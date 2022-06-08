@@ -1,3 +1,7 @@
+/* Imports */
+
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+
 /* Reset Styles */
 
 html, body, div, span, applet, object, iframe,
@@ -23,6 +27,7 @@ time, mark, audio, video {
 
 *{
     box-sizing: border-box;
+	font-family: 'Mulish', sans-serif;
 }
 
 article, aside, details, figcaption, figure, 
@@ -52,3 +57,14 @@ table {
 
 $background-color-primary: #DCF7F6;
 $text-color-primary: #2C2C2C;
+
+
+/* Mixins */
+
+@mixin flex($direction, $justify, $align, $wrap) {
+	display: flex;
+	flex-direction: $direction;
+	justify-content: $justify;
+	align-items: $align;
+	flex-wrap: $wrap;
+}

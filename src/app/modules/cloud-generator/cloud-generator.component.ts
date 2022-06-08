@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { CloudGeneratorConfiguration } from 'src/app/models/cloud.model';
 import { WordCloudService } from 'src/app/services/word-cloud.service';
 
 @Component({
@@ -9,11 +10,11 @@ import { WordCloudService } from 'src/app/services/word-cloud.service';
 })
 export class CloudGeneratorComponent implements OnInit {
 
-  configurationWordCloud = {
+  configurationWordCloud: CloudGeneratorConfiguration = {
     format: "png",
-    width: 500,
-    height: 500,
-    fontScale: 50,
+    width: 0,
+    height: 0,
+    fontScale: 0,
     fontFamily: "sans-serif",
     scale: "linear",
     text: '',
@@ -21,10 +22,13 @@ export class CloudGeneratorComponent implements OnInit {
 
   urlCloudWord: SafeUrl = '';
 
-  constructor(private cloudService: WordCloudService, private sanitizer: DomSanitizer) { }
+  constructor(
+    private cloudService: WordCloudService, 
+    private sanitizer: DomSanitizer, 
+  ) {}
 
   ngOnInit(): void {
-    this.generateCloudWord();
+    // this.generateCloudWord();
   }
 
   generateCloudWord(): void{ 
