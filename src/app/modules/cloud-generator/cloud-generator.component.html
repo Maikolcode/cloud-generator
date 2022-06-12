@@ -1,7 +1,12 @@
 <div class="container-cloud-generator">
   <div class="cloud-generator">
     <div class="cloud-generator__header">
-      <p>Word Cloud Generator</p>
+      <p class="title">Word Cloud Generator</p>
+      <p class="sub-text">
+        Generate your own <strong>personalized letter cloud</strong>! An image
+        will be created in .png format that you can
+        <strong>download for free</strong>.
+      </p>
     </div>
     <div class="cloud-generator__content">
       <div class="cloud-configuration">
@@ -9,10 +14,14 @@
           <div class="card-options">
             <div class="image-size">
               <label> Select a image size: </label>
-              <ng-select [(ngModel)]="sizeSelected" [clearable]="false">
+              <ng-select
+                [(ngModel)]="sizeSelected"
+                [clearable]="false"
+                (change)="changeImageSizeSelection(sizeSelected)"
+              >
                 <ng-option
                   *ngFor="let size of imageSizeList"
-                  [value]="size.size"
+                  [value]="size.id"
                   >{{ size.type }}</ng-option
                 >
               </ng-select>
@@ -27,60 +36,74 @@
                 max="150"
               />
             </div>
-            <div class="select">
-              <label for="text-type"> Select a text type: </label>
-              <ng-select
-                [(ngModel)]="typeText"
-                [clearable]="false"
-                (change)="resetTextToCloud()"
-              >
-                <ng-option [value]="0">Single Word</ng-option>
-                <ng-option [value]="1">Long Text</ng-option>
-              </ng-select>
+            <div class="text">
+              <label for="text">Enter text:</label>
+              <textarea
+                [(ngModel)]="configurationWordCloud.text"
+                placeholder="Text here..."
+                autocomplete="on"
+              ></textarea>
             </div>
             <div class="text">
-              <div class="single-word" *ngIf="typeText === 0; else longText">
-                <label for="text">Enter text:</label>
-                <input
-                  type="text"
-                  [(ngModel)]="word"
-                  placeholder="Enter text"
-                />
-                <mat-icon (click)="addWordToList(word)"
-                  >arrow_circle_right</mat-icon
-                >
-              </div>
-              <ng-template #longText>
-                <label for="text">Enter text:</label>
-                <textarea
-                  [(ngModel)]="configurationWordCloud.text"
-                  placeholder="Text here..."
-                  autocomplete="on"
-                ></textarea>
-              </ng-template>
+              <label for="text">File name:</label>
+              <input [(ngModel)]="fileName" placeholder="File name here..." />
             </div>
             <div class="generate-btn">
-              <button (click)="handleGenerateCloud()">Generate Cloud</button>
+              <button
+                *ngIf="!handleValidateFields(); else elseBlock"
+                (click)="handleGenerateCloud()"
+                mat-stroked-button
+                matTooltip="Generate Cloud"
+                matTooltipPosition="right"
+              >
+                <mat-icon> cloud </mat-icon>
+              </button>
+              <ng-template #elseBlock>
+                <button
+                  class="disabled"
+                  matTooltip="Complete All Fields"
+                  matTooltipPosition="right"
+                >
+                  <mat-icon> cloud_off </mat-icon>
+                </button>
+              </ng-template>
             </div>
           </div>
         </div>
         <div class="cloud-configuration__show">
-          <img *ngIf="urlCloudWord" [src]="urlCloudWord" alt="cloud" />
+          <div class="load-image" *ngIf="!urlCloudWord; else showCloud">
+            <img
+              src="../../../assets/images/svg/image-here.svg"
+              alt="image-generator"
+            />
+            <p>Your image load here...</p>
+          </div>
+          <ng-template #showCloud>
+            <img [src]="urlCloudWord" alt="cloud" />
+          </ng-template>
         </div>
-        <div class="cloud-configuration__download">Download</div>
       </div>
     </div>
     <div class="cloud-generator__footer">
-      <span>
-        <img src="../../../assets/images/png/cloud128x128.png" alt="" />
-      </span>
+      <div class="download-btn" *ngIf="true">
+        <p>Download Image</p>
+        <a [href]="urlCloudWord" target="_blank" [download]="returnFileName()">
+          <mat-icon> cloud_download </mat-icon>
+        </a>
+      </div>
+      <div class="credits">
+        <a href="https://github.com/Maikolcode" target="_blank"
+          ><img src="../../../assets/images/png/github.png" alt="github"
+        /></a>
+        <a href="https://michaelparra.netlify.app/" target="_blank"
+          >Michael Parra | Release 1.0.0
+        </a>
+        <a
+          href="https://www.linkedin.com/in/michael-parra-4429a4218/"
+          target="_blank"
+          ><img src="../../../assets/images/png/linkedin.png" alt="linkedin"
+        /></a>
+      </div>
     </div>
   </div>
 </div>
-<!-- <div *ngIf="urlCloudWord">
-    <img [src]="urlCloudWord" alt="cloud" />
-    <a [href]="urlCloudWord"
-    target="_blank"
-    download="wordCloud.png"
-    >Download Now</a>
-</div> -->

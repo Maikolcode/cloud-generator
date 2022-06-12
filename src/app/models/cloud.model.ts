@@ -9,6 +9,8 @@ export interface CloudGeneratorConfiguration {
 }
 
 export interface ImageSize {
+  id: number;
   type: string;
-  size: string;
+  width: string;
+  height: string;
 }

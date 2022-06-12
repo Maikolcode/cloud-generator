@@ -16,25 +16,22 @@ export class CloudGeneratorComponent implements OnInit {
     format: 'png',
     width: 0,
     height: 0,
-    fontScale: 16,
+    fontScale: 26,
     fontFamily: 'sans-serif',
     scale: 'linear',
     text: '',
   };
 
   imageSizeList: ImageSize[] = [
-    { type: '150 x 150', size: '150' },
-    { type: '250 x 250', size: '250' },
-    { type: '350 x 350', size: '350' },
-    { type: '450 x 450', size: '450' },
+    { type: '450 x 450', height: '450', width: '450', id: 1 },
+    { type: '600 x 450', height: '450', width: '600', id: 2 },
+    { type: '800 x 450', height: '450', width: '800', id: 3 },
+    { type: '1000 x 450', height: '450', width: '1000', id: 4 },
   ];
 
-  typeText: number = 0;
-  sizeSelected: string = '150';
-  word: string = '';
-  wordsList: string = '';
-  listText: string[] = [];
   urlCloudWord: SafeUrl = '';
+  fileName: string = 'cloud.png';
+  sizeSelected: number = 1;
 
   constructor(
     private cloudService: WordCloudService,
@@ -42,7 +39,7 @@ export class CloudGeneratorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.generateCloudWord();
+    this.changeImageSizeSelection(this.sizeSelected);
   }
 
   generateCloudWord(cloudObject: CloudGeneratorConfiguration): void {
@@ -55,24 +52,28 @@ export class CloudGeneratorComponent implements OnInit {
 
   resetTextToCloud(): void {
     this.configurationWordCloud.text = '';
-    this.listText = [];
+  }
+
+  changeImageSizeSelection(sizeId: number): void {
+    let sizeSelected = this.imageSizeList.find((size) => size.id === sizeId);
+
+    if (sizeSelected) {
+      this.configurationWordCloud.width = +sizeSelected.width;
+      this.configurationWordCloud.height = +sizeSelected.height;
+    }
+  }
+
+  handleValidateFields(): boolean {
+    return this.configurationWordCloud.text === '' || this.fileName === '';
   }
 
   handleGenerateCloud(): void {
-    this.configurationWordCloud.width = +this.sizeSelected;
-    this.configurationWordCloud.height = +this.sizeSelected;
-    if (this.configurationWordCloud.text.length > 0) {
-      this.generateCloudWord(this.configurationWordCloud);
-    }
+    this.generateCloudWord(this.configurationWordCloud);
   }
 
-  addWordToList(currentText: string): void {
-    if (currentText !== '') {
-      this.wordsList +=
-        this.wordsList === '' ? `${currentText}` : `, ${currentText}`;
-      this.configurationWordCloud.text += `${currentText} `;
-    }
-
-    console.log(this.configurationWordCloud.text);
+  returnFileName(): string {
+    return this.fileName.includes('.png')
+      ? this.fileName
+      : `${this.fileName}.png`;
   }
 }

@@ -1,6 +1,6 @@
 /* Imports */
 
-@import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;900&display=swap");
 
 /* Reset Styles */
 
@@ -154,6 +154,9 @@ table {
 $background-color-primary: #dcf7f6;
 $text-color-primary: #2c2c2c;
 $border-select-color: #b2b2b2;
+$text-button-color: #0b2999;
+$text-button-color-hover: #1d62bd;
+$transition: all 0.6s ease;
 
 /* Mixins */
 
@@ -172,9 +175,17 @@ $border-select-color: #b2b2b2;
     .ng-select {
       .ng-select-focused,
       .ng-select-container {
-        border-color: $border-select-color;
+        border: 2px solid $text-button-color;
+        border-radius: 10px;
         box-shadow: none;
       }
     }
   }
+}
+
+/* adjust icon size */
+@mixin iconSize($size) {
+  font-size: $size;
+  width: $size;
+  height: $size;
 }
