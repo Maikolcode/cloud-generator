@@ -2,7 +2,11 @@
 
 This project aims to generate a user customizable word cloud. :paperclip:
 
+<<<<<<< HEAD
 <a href="https://word-cloud-gen.netlify.app/cloud-generator" target="_blank">Demo</a>
+=======
+[Demo](https://word-cloud-gen.netlify.app/cloud-generator){:target="_blank"}
+>>>>>>> 1fd461b7c6bfba30df766d2f53165dea5a25b093
 
 <h2>Starting! :hammer:</h2>
 
