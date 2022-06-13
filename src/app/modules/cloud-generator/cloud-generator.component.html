@@ -61,7 +61,7 @@
               <ng-template #elseBlock>
                 <button
                   class="disabled"
-                  matTooltip="Complete All Fields"
+                  matTooltip="Complete all fields"
                   matTooltipPosition="right"
                 >
                   <mat-icon> cloud_off </mat-icon>
@@ -71,6 +71,11 @@
           </div>
         </div>
         <div class="cloud-configuration__show">
+          <mat-progress-bar
+            *ngIf="loaderService.isLoading | async"
+            mode="indeterminate"
+          >
+          </mat-progress-bar>
           <div class="load-image" *ngIf="!urlCloudWord; else showCloud">
             <img
               src="../../../assets/images/svg/image-here.svg"
@@ -81,6 +86,15 @@
           <ng-template #showCloud>
             <img [src]="urlCloudWord" alt="cloud" />
           </ng-template>
+          <div class="clear-data" *ngIf="urlCloudWord">
+            <mat-icon
+              matTooltip="Clear data"
+              matTooltipPosition="right"
+              (click)="cleanCloudObject()"
+            >
+              delete
+            </mat-icon>
+          </div>
         </div>
       </div>
     </div>
@@ -92,15 +106,19 @@
         </a>
       </div>
       <div class="credits">
-        <a href="https://github.com/Maikolcode" target="_blank"
+        <a
+          href="https://github.com/Maikolcode"
+          target="_blank"
+          class="animation"
           ><img src="../../../assets/images/png/github.png" alt="github"
         /></a>
         <a href="https://michaelparra.netlify.app/" target="_blank"
-          >Michael Parra | Release 1.0.0
+          >MaikolCode | Release 1.0.1
         </a>
         <a
           href="https://www.linkedin.com/in/michael-parra-4429a4218/"
           target="_blank"
+          class="animation"
           ><img src="../../../assets/images/png/linkedin.png" alt="linkedin"
         /></a>
       </div>

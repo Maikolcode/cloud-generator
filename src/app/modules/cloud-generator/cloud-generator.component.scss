@@ -114,14 +114,16 @@
 
         &__show {
           width: 80%;
-          height: 50vh;
-          @include flex(row, center, center, nowrap);
+          max-height: 100%;
+          @include flex(column, flex-start, center, nowrap);
           background-color: rgba(255, 255, 255, 0.75);
           border-radius: 0 0 16px 16px;
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
           border: 1px solid rgba(255, 255, 255, 0.16);
 
           .load-image {
+            @include flex(column, center, center, nowrap);
+            height: 52vh;
             padding: 1em 2em;
             img {
               width: 20em;
@@ -133,6 +135,22 @@
               color: $text-color-primary;
               font-size: 20px;
               font-weight: bold;
+            }
+          }
+
+          .clear-data {
+            width: 100%;
+            @include flex(row, flex-end, center, nowrap);
+            padding: 0.5em;
+            .mat-icon {
+              cursor: pointer;
+              @include iconSize(30px);
+              color: $text-color-primary;
+              transition: $transition;
+            }
+
+            .mat-icon:hover {
+              color: black;
             }
           }
         }
@@ -154,7 +172,7 @@
           text-decoration: none;
 
           .mat-icon {
-            @include iconSize(120px);
+            @include iconSize(100px);
             color: $text-button-color;
             transition: $transition;
           }
@@ -173,13 +191,21 @@
         @include flex(row, space-between, center, wrap);
         a {
           text-decoration: none;
+          transition: $transition;
           color: black;
           font-size: 16px;
           font-weight: 600;
           font-family: "Open Sans" sans-serif !important;
         }
+        a:hover {
+          color: $text-color-primary;
+        }
+
         img {
           width: 2em;
+        }
+        .animation:hover {
+          transform: translateY(-5px);
         }
       }
     }
@@ -215,7 +241,7 @@
 
           &__show {
             img {
-              max-width: 25em;
+              max-width: 22em;
             }
           }
         }

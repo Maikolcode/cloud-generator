@@ -1,27 +1,68 @@
-# CloudGeneratorProject
+<h1>Welcome to Word Cloud Generator :cloud:</h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
+This project aims to generate a user customizable word cloud. :paperclip:
 
-## Development server
+[Demo](https://word-cloud-gen.netlify.app/cloud-generator)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+<hr>
 
-## Code scaffolding
+<h2>Starting! :hammer:</h2>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This project is made with <b>Angular 14+</b>, using SCSS as a style compiler and TypeScript. :heavy_check_mark:</br>
 
-## Build
+A public api is consumed to generate the word clouds. -> [QuickChart](https://quickchart.io/documentation/word-cloud-api/) :man_technologist:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+<hr>
 
-## Running unit tests
+<h2>Build :bulb:</h2>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To start our project locally we must open a terminal of our choice and execute the following command. :wrench: </br>
 
-## Running end-to-end tests
+```
+    > git clone https://github.com/Maikolcode/cloud-generator.git
+    > cd cloud-generator
+    > npm i
+    > ng serve -o
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+<hr>
 
-## Further help
+<h2>Deploy :rocket:</h2>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+To deploy and test our application in a public web environment we can use <b>Netlify</b>, which offers us a free hosting service, where we can carry out the tests.
+
+<img src="public/images/netlify.png" height="100" width="100"/>
+
+Regarding the hosting process, it is done directly on the official Netlify page, [more information](https://www.netlify.com/).:heavy_check_mark:
+
+<hr>
+
+<h2>Libraries :hammer:</h2>
+
+The following resources were used:
+
+- Angular Material :boom:
+- NgSelect :raised_hands:
+
+<h3> Angular functionalities <h3>
+
+For optimal development use:
+
+- Routing :muscle:
+- HttpClient :earth_americas:
+- Interceptor :detective:
+- Forms :sunglasses:
+
+<hr>
+
+<h2>Preview :eyes:</h2>
+
+<img src="src/assets/images/png/word-cloud-generator.png" style="width: 100%; height: 420px;"/>
+
+<h2>Authors :pushpin:</h2>
+
+For the elaboration of the project were influential:
+
+- Michael Parra -> _Creation and Deployment_
+
+- QuickChart - _API Provider_ - [API](https://quickchart.io/documentation/word-cloud-api/)

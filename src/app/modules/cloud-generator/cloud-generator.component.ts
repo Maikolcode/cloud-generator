@@ -4,6 +4,7 @@ import {
   CloudGeneratorConfiguration,
   ImageSize,
 } from 'src/app/models/cloud.model';
+import { LoaderService } from 'src/app/services/loader.service';
 import { WordCloudService } from 'src/app/services/word-cloud.service';
 
 @Component({
@@ -35,7 +36,8 @@ export class CloudGeneratorComponent implements OnInit {
 
   constructor(
     private cloudService: WordCloudService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    public loaderService: LoaderService
   ) {}
 
   ngOnInit(): void {
@@ -75,5 +77,11 @@ export class CloudGeneratorComponent implements OnInit {
     return this.fileName.includes('.png')
       ? this.fileName
       : `${this.fileName}.png`;
+  }
+
+  cleanCloudObject(): void {
+    this.resetTextToCloud();
+    this.urlCloudWord = '';
+    this.fileName = '';
   }
 }

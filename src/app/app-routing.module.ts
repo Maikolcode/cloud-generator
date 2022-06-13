@@ -3,13 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { CloudGeneratorComponent } from './modules/cloud-generator/cloud-generator.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/cloud-generator', pathMatch: 'full' },
+  { path: '**', redirectTo: '/cloud-generator', pathMatch: 'full' },
   { path: 'cloud-generator', component: CloudGeneratorComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-
-export class AppRoutingModule { }
+export class AppRoutingModule {}
